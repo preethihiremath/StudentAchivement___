@@ -13,15 +13,16 @@ navbarMenu :{
     display:'flex',  
     listStyle:'none',
     justifyContent:'right',
-    '@media screen and (max-width:654px)':{
-       display:'none'
-    }
+    
 },
 navLink :{
     
     textDecoration:'none',
     margin:'0 2rem',
-    fontSize:'1rem'
+    fontSize:'1rem',
+    '@media screen and (max-width:654px)':{
+        display:'none'
+     }
 
 }
 });
