@@ -12,7 +12,10 @@ navbarBrand :{
 navbarMenu :{
     display:'flex',  
     listStyle:'none',
-    justifyContent:'right'
+    justifyContent:'right',
+    '@media screen and (max-width:654px)':{
+       display:'none'
+    }
 },
 navLink :{
     

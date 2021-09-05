@@ -3,7 +3,7 @@ import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import Project from './components/Projects'
 import Contact from './components/Contact';
-import Blog from './components/Blog';
+import Services from './components/Services';
 
 import {ThemeProvider,createTheme} from '@material-ui/core';
 const MainComponent =()=>{
@@ -37,7 +37,7 @@ const MainComponent =()=>{
             <NavBar darkState={darkState} handleThemeChange={handleThemeChange} />
             <Hero darkState={darkState} />
             <Project darkState={darkState} />
-            <Blog darkState={darkState} />
+            <Services darkState={darkState} />
             <Contact />
         </ThemeProvider>
         

@@ -17,7 +17,6 @@ const NavBar =({darkState,handleThemeChange})=>{
             <AcUnitIcon  style={{fontSize:'30px'}}/>
              <Typography variant="h6" style={{marginLeft:'30px'}}>Preethi</Typography>
           </div>
-
             <ul className={classes.navbarMenu}>
               <li><a href="#hero" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Home</a> </li>
               <li><a href="#projects" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Projects</a> </li>

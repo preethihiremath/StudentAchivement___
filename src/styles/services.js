@@ -3,16 +3,27 @@ const useStyles = makeStyles({
 blog:{
 padding:'0 4rem',
 height:'100vh',
+'@media screen and (max-width:654px)':{
+    padding:'0 ',
+    height:'auto',
+    marginBottom:'30px'
+}
 },
 heading: {
 textAlign:'right',
-fontSize:'40px'
+fontSize:'40px',
+'@media screen and (max-width:654px)':{
+    textAlign:'center',
+}
 },
 skills :{
     display:'flex',
     flexDirection:'row',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    '@media screen and (max-width:654px)':{
+        flexDirection:'column'
+    }
 },
 list :{
     width:'250px',

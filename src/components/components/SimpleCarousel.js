@@ -1,6 +1,9 @@
 import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import useStyles from '../../styles/project';
 import Card from './Card';
+
 import artgallery from './../../images/artgallery.png'
 import event from './../../images/event.jpeg'
 import inovact from './../../images/inovact.png'
@@ -43,14 +46,12 @@ const item = [
     title:'E-learning',
     image:elearn,
     des:'HTML,CSS,Sass',
-  },
-
-  
+  },  
 ];
 
 
-const Simple = ({ deviceType,darkState }) => {
-    const classes=useStyles();
+const SimpleCarousel = ({ deviceType,darkState }) => {
+  const classes=useStyles();
   return (
     <div style={{paddingTop:'2rem'}}>
     <Carousel
@@ -62,9 +63,7 @@ const Simple = ({ deviceType,darkState }) => {
       deviceType={deviceType}
       itemClass="image-item"
       responsive={responsive}
-      
     >
-     
       {item.slice(0, 5).map((card,index) => {
         return (
           <div key={index}  className={classes.carouselCont}>
@@ -72,10 +71,9 @@ const Simple = ({ deviceType,darkState }) => {
           </div>
         );
       })}
-      
     </Carousel>
     </div>
   );
 };
 
-export default Simple;
+export default SimpleCarousel;

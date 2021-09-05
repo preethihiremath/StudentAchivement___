@@ -10,6 +10,7 @@ import StartProject from './StartProject';
 
 const Contact =()=>{
     const classes=useStyles();
+    
     return (
    <section className={classes.contact}  id="contact">
       <StartProject />
