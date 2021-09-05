@@ -1,60 +1,33 @@
-import React,{useState} from 'react'
-import {ThemeProvider,createTheme,CssBaseline,AppBar,Toolbar,Fab,Typography,Container ,Zoom, useScrollTrigger} from '@material-ui/core'
-import { green, purple, yellow } from '@material-ui/core/colors';
-import Switch from "@material-ui/core/Switch";
+import React from 'react'
+import {AppBar,Toolbar,Typography} from '@material-ui/core'
 import useStyles from '../../styles/navbar';
-import {Link} from 'react-router-dom'
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
+import BrightnessLowOutlinedIcon from '@material-ui/icons/BrightnessLowOutlined';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 
-const NavBar =(props)=>{
+const NavBar =({darkState,handleThemeChange})=>{
   const classes = useStyles();
-  const [darkState,setDarkState]=useState(true);
-  const palletType=darkState ? "dark":"light";
-  const mainPrimary=darkState ? purple[50]: green[50];
-  const mainSecondary=darkState?purple[50]:yellow[50];
-  const darkTheme =createTheme(
-    {
-      palette :{
-        type:palletType,
-        primary:{
-          main:mainPrimary
-        },
-        secondary:{
-          main:mainSecondary
-        }
-      }
-    }
-  );
-  const handleThemeChange =()=>{
-    setDarkState(!darkState);
-  }
+  const icon= darkState ?<BrightnessLowOutlinedIcon/> : <Brightness2OutlinedIcon />
+
     return (
-      <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
       <AppBar>
         <Toolbar className={classes.navbar}>
           <div className={classes.navbarBrand}>
-            <img src="" alt="ph"/>
-             <Typography variant="h6">Preethi</Typography>
+            <AcUnitIcon  style={{fontSize:'30px'}}/>
+             <Typography variant="h6" style={{marginLeft:'30px'}}>Preethi</Typography>
           </div>
 
             <ul className={classes.navbarMenu}>
-              <li> <Link to="#home">Home</Link></li>
-              <li> <Link to="#projects">Project</Link></li>
-              <li> <Link to="#projects">Blog</Link></li>
-              <li> <Link to="#projects">Contact</Link></li>
+              <li><a href="#hero" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Home</a> </li>
+              <li><a href="#projects" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Projects</a> </li>
+              <li><a href="#services" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Services</a> </li>
+              <li><a href="#contact" className={classes.navLink} style={{color:darkState? 'white': 'black'}}>Contact</a> </li>
+              <li onClick={handleThemeChange}>{icon} </li>
             </ul>
         </Toolbar>
       </AppBar>
-
-     
-      <Container>
-        ,=ifjfdshvsghvsdgh
-      </Container>
-    
-   
-      </ThemeProvider>
+ 
      
     );
 }
