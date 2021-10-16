@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { Box,TextField,Typography,Button} from '@material-ui/core'
-import useStyles from '../../styles/styles';
+import useStyles from '../../styles/usn';
 import {useHistory} from 'react-router-dom';
 
 const USNInput =(props)=>{
@@ -9,7 +9,6 @@ const USNInput =(props)=>{
   let history=useHistory();
   const [usn,setUsn] =useState(null);
   const [phno, setPhNo]=useState(null);
-  const [isFilled, setIsFilled]=useState(false);
 
 const Validate= async ()=>{
   let usnValid=false //get user
@@ -56,12 +55,12 @@ const handleSubmit =(event) =>{
 return(
     <Box 
     component="form" 
-    className={classes.signIn}    sx={{
+    className={classes.usnForm}    sx={{
       '& .MuiTextField-root': { m: 1,  },
     }}
     noValidate
     autoComplete="off">
-      <Typography as="h1" className={classes.heading}>Enter the following details </Typography>
+      <Typography as="h1" className={classes.usnHeading}>Enter the following details </Typography>
         <TextField
           required
           id="usn"
@@ -80,7 +79,7 @@ return(
           onChange={handlePhnoChange}
         />     
 
-          <Button type="submit" variant="contained"  className={classes.signInButton} onClick={handleSubmit}  >
+          <Button type="submit" variant="contained"  className={classes.nextButton} onClick={handleSubmit}  >
               Next
           </Button>
     </Box>

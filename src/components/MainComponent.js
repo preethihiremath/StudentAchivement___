@@ -1,10 +1,11 @@
-import React,{useState,useEffect} from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import React,{useState} from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from './components/Landing'
 import USNInput from './components/USN';
 import Navbar from './components/Navbar'
 import Feed from './components/Feed'
 const MainComponent =()=>{
+     const [isLoggedin, setIsloggedIn]=useState(false);
     const [userData,setUserData]=useState({
         usn: '',
         name: '',
@@ -17,37 +18,36 @@ const MainComponent =()=>{
         award: '',
         department_id: '',
         batch: '',
-        year: ''
+        year: '',
     })
-    useEffect(()=>{
-     console.log("In useEffect",userData);
-   },[userData])
-    const handleUserData =( type , value) =>{
-        
+    const handleLoggedIn =()=>{
+         setIsloggedIn(true);
+    }
+    const handleUserData =( type , value) =>{    
     switch(type) {
-        case "usn":  setUserData({...userData , usn: value}); 
+        case "usn":  setUserData(userData =>({...userData , usn: value})); 
              break;
-        case "name" : setUserData({...userData , name: value}); 
+        case "name" : setUserData(userData =>({...userData , name: value})); 
              break;
-        case "image" : setUserData({...userData , image: value});
+        case "image" : setUserData(userData =>({...userData , image: value}));
              break;
-        case "email" : setUserData({...userData , email: value}); 
+        case "email" : setUserData(userData =>({...userData , email: value})); 
              break;
-        case "phone" : setUserData({...userData , phone: value});
+        case "phone" : setUserData(userData =>({...userData , phone: value}));
              break;
-        case "nameOfEvent" : setUserData({...userData , nameOfEvent: value});
+        case "nameOfEvent" : setUserData(userData =>({...userData , nameOfEvent: value}));
              break;
-        case "detailsOfEvent" : setUserData({...userData , detailsOfEvent: value});
+        case "detailsOfEvent" : setUserData(userData =>({...userData , detailsOfEvent: value}));
              break;
-       case "level" : setUserData({...userData , level: value}); console.log("In level ",value)
+       case "level" : setUserData(userData =>({...userData , level: value})); 
              break;
-       case "award" : setUserData({...userData , award: value});
+       case "award" : setUserData(userData =>({...userData , award: value}));
              break;
-       case "department_id" : setUserData({...userData ,  department_id: value});
+       case "department_id" : setUserData(userData =>({...userData ,  department_id: value}));
              break;
-        case "batch" : setUserData({...userData , batch: value});
+        case "batch" : setUserData(userData =>({...userData , batch: value}));
              break;
-        case "year" : setUserData({...userData , year: value});
+        case "year" : setUserData(userData =>({...userData , year: value}));
              break;
         default : console.log("hehehe");
     }
@@ -55,10 +55,10 @@ const MainComponent =()=>{
  }
 return(
   <div className="Main">
-  <Navbar />
+  <Navbar isLoggedin={isLoggedin} />
   <Router>
       <Switch>
-          <Route path="/" exact render={()=> <Landing handleUserData={handleUserData} />} />
+          <Route path="/" exact render={()=> <Landing handleUserData={handleUserData} handleLoggedIn={handleLoggedIn} />} />
            {/*  Should be authenticated??? */}
           <Route path="/usn" exact render={()=> <USNInput handleUserData={handleUserData} userData={userData}/>} />
           <Route path="/feed" exact render={()=> <Feed handleUserData={handleUserData} userData={userData}/>} />

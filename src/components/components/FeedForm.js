@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { TextField,Typography,Button,FormGroup,FormControlLabel,Checkbox} from '@material-ui/core'
-import useStyles from '../../styles/styles';
+import useStyles from '../../styles/feed';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -49,6 +49,14 @@ const USNInput =(props)=>{
       return false
     }
   }
+  const handleClear =() =>{
+    setYear("");
+    setEvent("");
+    setDetails("");
+    setAward("No");
+    setChecked(false);
+    setLevel("");
+  }
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
@@ -64,9 +72,10 @@ const USNInput =(props)=>{
         //   await add_data(props.userData);
         alert("Success")
         history.push('/feed')
+        handleClear();
       }
       else {
-        throw 1;
+        throw new Error("Invalid ");
       }
     }
     catch(error)
@@ -78,13 +87,13 @@ const USNInput =(props)=>{
 return(
     <Box 
     component="form" 
-    className={classes.signIn}    sx={{
+    className={classes.feedForm}    sx={{
       '& .MuiTextField-root': { m: 1,  },
     }}
     noValidate
     autoComplete="off">
    
-   <Typography as="h1" className={classes.heading} style={{marginBottom:'30px'}}>Enter the Following details </Typography> 
+   <Typography as="h1" className={classes.feedHeading} style={{marginBottom:'30px'}}>Enter the Following details </Typography> 
         <FormControl fullWidth style={{marginBottom:'30px'}}>
               <InputLabel id="demo-simple-select-label">Year</InputLabel>
               <Select
@@ -112,14 +121,13 @@ return(
                 onChange={handleEventChange}  
                 style={{maxWidth:'484px'}}
               >
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="quiz">Quiz Competition</MenuItem>
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="coding">Coding Competition/Hackathons</MenuItem>
-                  <MenuItem value="ieee"  style={{display:'flex',flexDirection:'column',textAlign:'left',justifyContent:'left'}}>IEEE Event</MenuItem>
-
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="technical">Any Techincal Events</MenuItem>
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="hackerrank">HackerRank Challenges/ Competetion</MenuItem>
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="publications">Paper or Publications</MenuItem>
-                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="other">Other</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="Quiz Competition">Quiz Competition</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="Coding Competition/Hackathons">Coding Competition/Hackathons</MenuItem>
+                  <MenuItem value="IEEE Event"  style={{display:'flex',flexDirection:'column',textAlign:'left',justifyContent:'left'}}>IEEE Event</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="Any Techincal Events">Any Techincal Events</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="HackerRank Challenges/ Competetion">HackerRank Challenges/ Competetion</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="Paper or Publications">Paper or Publications</MenuItem>
+                  <MenuItem  style={{display:'flex',flexDirection:'column'}} value="Other">Other</MenuItem>
               </Select>
           </FormControl>  
 
@@ -157,12 +165,12 @@ return(
                 <MenuItem value="international" style={{display:'flex',flexDirection:'column'}}>InterNational</MenuItem>
             </Select> 
         </FormControl> 
-        <FormControl className={classes.inputText}>
+
+        <FormGroup className={classes.inputText}>
         <InputLabel id="demo-simple-select-label">Awards ?</InputLabel>
         <FormControlLabel control={<Checkbox onChange={handleCheckbox}/> } label="Yes" />
-        </FormControl>
-        
-        <Button variant="contained"  className={classes.signInButton} onClick={handleSubmit}>Finish</Button>
+        </FormGroup>
+        <Button variant="contained"  className={classes.finishButton} onClick={handleSubmit}>Finish</Button>
     </Box>
     );
 }

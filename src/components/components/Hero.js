@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box,} from '@material-ui/core'
-import useStyles from '../../styles/styles';
+import useStyles from '../../styles/hero';
 const Hero =(props)=>{
 
   const classes=useStyles();

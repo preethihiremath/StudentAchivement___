@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Logout from './Logout';
 
-export default function ButtonAppBar() {
+export default function Navbar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -13,7 +13,9 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
            Student Achivement
           </Typography>
-          <Logout />
+         {
+           props.isLoggedin && <Logout />
+         } 
         </Toolbar>
       </AppBar>
     </Box>
