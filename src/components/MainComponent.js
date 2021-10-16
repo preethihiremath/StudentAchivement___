@@ -1,47 +1,70 @@
-import React,{useState} from 'react'
-import NavBar from './components/NavBar';
-import Hero from './components/Hero';
-import Project from './components/Projects'
-import Contact from './components/Contact';
-import Services from './components/Services';
-
-import {ThemeProvider,createTheme} from '@material-ui/core';
+import React,{useState,useEffect} from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import Landing from './components/Landing'
+import USNInput from './components/USN';
+import Navbar from './components/Navbar'
+import Feed from './components/Feed'
 const MainComponent =()=>{
-    const [darkState,setDarkState]=useState(true);
-    const palletType=darkState ? "dark":"light";
-    const mainPrimary=darkState ? '#0D1B34': '#ffe9fe';
-    const mainSecondary=darkState?'#90afff':'#ebd6ed';
-    document.querySelector('body').style.backgroundColor=mainPrimary;
-    const theme =createTheme(
-      {
-        palette :{
-          type:palletType,
-          primary:{
-            main:mainPrimary,
-          },
-          secondary:{
-            main:mainSecondary
-          }
-        }
-      }
-    );
-    const handleThemeChange =()=>{
-        setDarkState(!darkState);
-       
-       
-      
-      }
-    return (
-        <>
-        <ThemeProvider theme={theme}>
-            <NavBar darkState={darkState} handleThemeChange={handleThemeChange} />
-            <Hero darkState={darkState} />
-            <Project darkState={darkState} />
-            <Services darkState={darkState} />
-            <Contact />
-        </ThemeProvider>
+    const [userData,setUserData]=useState({
+        usn: '',
+        name: '',
+        email: '',
+        image: '',
+        phone: '',
+        nameOfEvent: '',
+        detailsOfEvent: '',
+        level: '',
+        award: '',
+        department_id: '',
+        batch: '',
+        year: ''
+    })
+    useEffect(()=>{
+     console.log("In useEffect",userData);
+   },[userData])
+    const handleUserData =( type , value) =>{
         
-        </>
+    switch(type) {
+        case "usn":  setUserData({...userData , usn: value}); 
+             break;
+        case "name" : setUserData({...userData , name: value}); 
+             break;
+        case "image" : setUserData({...userData , image: value});
+             break;
+        case "email" : setUserData({...userData , email: value}); 
+             break;
+        case "phone" : setUserData({...userData , phone: value});
+             break;
+        case "nameOfEvent" : setUserData({...userData , nameOfEvent: value});
+             break;
+        case "detailsOfEvent" : setUserData({...userData , detailsOfEvent: value});
+             break;
+       case "level" : setUserData({...userData , level: value}); console.log("In level ",value)
+             break;
+       case "award" : setUserData({...userData , award: value});
+             break;
+       case "department_id" : setUserData({...userData ,  department_id: value});
+             break;
+        case "batch" : setUserData({...userData , batch: value});
+             break;
+        case "year" : setUserData({...userData , year: value});
+             break;
+        default : console.log("hehehe");
+    }
+    console.log(userData);
+ }
+return(
+  <div className="Main">
+  <Navbar />
+  <Router>
+      <Switch>
+          <Route path="/" exact render={()=> <Landing handleUserData={handleUserData} />} />
+           {/*  Should be authenticated??? */}
+          <Route path="/usn" exact render={()=> <USNInput handleUserData={handleUserData} userData={userData}/>} />
+          <Route path="/feed" exact render={()=> <Feed handleUserData={handleUserData} userData={userData}/>} />
+      </Switch>
+  </Router>
+</div>
     );
 }
-export default MainComponent;
+export default MainComponent
